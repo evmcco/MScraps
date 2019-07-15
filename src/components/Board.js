@@ -24,16 +24,10 @@ class Board extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handlePassChange = e => {
-    this.setState({
-      bets: { ...this.state.bets, pass: e.target.value }
-    });
-  };
-
   handleChange = e => {
-    const newBets = { ...this.state.bets };
+    let newBets = { ...this.state.bets };
     const target = e.target;
-    const value = target.value;
+    const value = parseInt(target.value);
     const name = target.name;
     newBets[name] = value;
     this.setState({
