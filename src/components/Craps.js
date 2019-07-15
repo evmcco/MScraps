@@ -3,7 +3,7 @@ import Board from "./Board";
 
 class Craps extends Component {
   state = {
-    playerCash: 10,
+    playerCash: 100,
     die1: 0,
     die2: 0,
     point: 0,
@@ -53,10 +53,26 @@ class Craps extends Component {
     ) : null;
   };
 
+  sumBets = bets => {
+    let sum = 0;
+    for (let el in bets) {
+      if (bets.hasOwnProperty(el)) {
+        sum += parseInt(bets[el]);
+      }
+    }
+    return sum;
+  };
+
   acceptBets = bets => {
-    this.setState({
-      bets
-    });
+    let betSum = this.sumBets(bets);
+    if (betSum > this.state.playerCash) {
+      window.alert("Insufficient funds to complete bets, try again");
+    } else {
+      this.setState({
+        bets,
+        playerCash: this.state.playerCash - betSum
+      });
+    }
   };
 
   getResults = () => {
@@ -69,15 +85,14 @@ class Craps extends Component {
           case 3:
           case 12:
             //pass loses, dont pass wins
-            let winnings = this.state.bets.dontPass;
-            newState.playerCash = this.state.playerCash + winnings;
+            newState.playerCash =
+              this.state.playerCash + this.state.bets.dontPass;
             newState.bets.pass = 0;
             break;
           case 7:
           case 11:
             //pass wins, dont pass loses
-            let winnings = this.state.bets.pass;
-            newState.playerCash = this.state.playerCash + winnings;
+            newState.playerCash = this.state.playerCash + this.state.bets.pass;
             newState.bets.dontPass = 0;
             break;
           case 4:
@@ -86,7 +101,7 @@ class Craps extends Component {
           case 8:
           case 9:
           case 10:
-            //set the point, move pass/dont pass bets to come/dont come
+            //set the point
             newState.point = diceSum;
             break;
         }
@@ -108,10 +123,11 @@ class Craps extends Component {
               field: 0
             };
             newState.point = 0;
+            break;
           case this.state.point:
             //pass wins
-            let winnings = this.state.bets.pass;
-            newState.playerCash = this.state.playerCash + winnings;
+            newState.playerCash = this.state.playerCash + this.state.bets.pass;
+            break;
           default:
           //keep rolling
         }
@@ -141,6 +157,8 @@ class Craps extends Component {
             <span>{this.dieNumberToIcon(this.state.die2)}</span>
           ) : null}
         </h1>
+        <h2>Player Funds: {this.state.playerCash}</h2>
+        {!!this.state.point ? <p>Point: {this.state.point}</p> : null}
         <Board
           acceptBets={bets => this.acceptBets(bets)}
           bets={this.state.bets}
