@@ -176,11 +176,19 @@ class Craps extends Component {
                 newState.bets.pass
               } wins.`
             );
-          case 1:
+            break;
+          case this.state.comePoint:
+            //come wins
+            newState.playerCash += newState.bets.come;
+            newState.activityLog.unshift(
+              `${diceSum}: The come hits! Your come bet of $${
+                newState.bets.come
+              } wins.`
+            );
             break;
           case 2:
-            //come bet loses
-            if (newState.bets.come > 0) {
+            //come bet loses if come point is not set
+            if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come bet of $${newState.bets.come} loses.`
               );
@@ -197,8 +205,8 @@ class Craps extends Component {
             }
             break;
           case 3:
-            //come bet loses
-            if (newState.bets.come > 0) {
+            //come bet loses if come point is not set
+            if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come bet of $${newState.bets.come} loses.`
               );
@@ -213,8 +221,8 @@ class Craps extends Component {
             }
             break;
           case 4:
-            //if theres a come bet, set the comePoint
-            if (newState.bets.come != 0) {
+            //if theres a come bet, and a comePoint isn't set, set the comePoint
+            if (newState.bets.come != 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -238,8 +246,8 @@ class Craps extends Component {
             }
             break;
           case 5:
-            //if theres a come bet, set the comePoint
-            if (newState.bets.come != 0) {
+            //if theres a come bet, and a comePoint isn't set, set the comePoint
+            if (newState.bets.come != 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -256,8 +264,8 @@ class Craps extends Component {
             }
             break;
           case 6:
-            //if theres a come bet, set the comePoint
-            if (newState.bets.come != 0) {
+            //if theres a come bet, and a comePoint isn't set, set the comePoint
+            if (newState.bets.come != 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -274,16 +282,14 @@ class Craps extends Component {
             }
             break;
           case 7:
-            //come wins, clear bets and reset point
-            if (newState.bets.come > 0) {
+            //come wins if no come point is set, clear bets and reset points
+            if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come bet of $${newState.bets.come} wins.`
               );
               newState.playerCash += newState.bets.come * 2;
             }
-            newState.activityLog.unshift(
-              `${diceSum}! All bets lose and are cleared from the board. The point is reset.`
-            );
+            newState.activityLog.unshift(`${diceSum}! Board is cleared.`);
             newState.bets = {
               pass: 0,
               come: 0,
@@ -296,10 +302,11 @@ class Craps extends Component {
               field: 0
             };
             newState.point = 0;
+            newState.comePoint = 0;
             break;
           case 8:
-            //if theres a come bet, set the comePoint
-            if (newState.bets.come != 0) {
+            //if theres a come bet, and a comePoint isn't set, set the comePoint
+            if (newState.bets.come != 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -316,8 +323,8 @@ class Craps extends Component {
             }
             break;
           case 9:
-            //if theres a come bet, set the comePoint
-            if (newState.bets.come != 0) {
+            //if theres a come bet, and a comePoint isn't set, set the comePoint
+            if (newState.bets.come != 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -334,8 +341,8 @@ class Craps extends Component {
             }
             break;
           case 10:
-            //if theres a come bet, set the comePoint
-            if (newState.bets.come != 0) {
+            //if theres a come bet, and a comePoint isn't set, set the comePoint
+            if (newState.bets.come != 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -360,7 +367,7 @@ class Craps extends Component {
             break;
           case 11:
             //come wins
-            if (newState.bets.come > 0) {
+            if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come bet of $${newState.bets.come} wins.`
               );
@@ -375,8 +382,8 @@ class Craps extends Component {
             }
             break;
           case 12:
-            //come bet loses
-            if (newState.bets.come > 0) {
+            //come bet loses if come point is not set
+            if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come bet of $${newState.bets.come} loses.`
               );
@@ -425,11 +432,14 @@ class Craps extends Component {
           ) : null}
         </h1>
         {!!this.state.point ? <p>Point: {this.state.point}</p> : null}
-        {!!this.state.comePoint ? <p>Come: {this.state.comePoint}</p> : null}
+        {!!this.state.comePoint ? (
+          <p>Come Point: {this.state.comePoint}</p>
+        ) : null}
         <Board
           acceptBets={bets => this.acceptBets(bets)}
           bets={this.state.bets}
           point={this.state.point}
+          comePoint={this.state.comePoint}
         />
         <h3>Player Funds: {this.state.playerCash}</h3>
         <div className="activity">

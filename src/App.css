@@ -43,3 +43,14 @@ ul {
   flex-direction: row;
   justify-content: space-around;
 }
+
+.bets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+input[readonly] {
+  background-color: rgb(240, 240, 240);
+}
