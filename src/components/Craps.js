@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Board from "./Board";
+import RollHistory from "./RollHistory";
 
 class Craps extends Component {
   state = {
@@ -29,7 +30,7 @@ class Craps extends Component {
     const die1 = Math.floor(Math.random() * 6 + 1);
     const die2 = Math.floor(Math.random() * 6 + 1);
     let newAllRolls = this.state.allRolls.slice();
-    newAllRolls.push([die1, die2]);
+    newAllRolls.unshift([die1, die2]);
     this.setState({
       die1: die1,
       die2: die2,
@@ -136,7 +137,7 @@ class Craps extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("prevState", prevState, "current State", this.state);
+    // console.log("prevState", prevState, "current State", this.state);
     if (this.state.allRolls !== prevState.allRolls) {
       this.getResults();
     }
@@ -162,7 +163,9 @@ class Craps extends Component {
         <Board
           acceptBets={bets => this.acceptBets(bets)}
           bets={this.state.bets}
+          point={this.state.point}
         />
+        <RollHistory prevRolls={this.state.allRolls} />
       </>
     );
   }
