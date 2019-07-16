@@ -13,7 +13,6 @@ class Craps extends Component {
       pass: 0,
       dontPass: 0,
       come: 0,
-      dontCome: 0,
       place4: 0,
       place5: 0,
       place6: 0,
@@ -22,8 +21,7 @@ class Craps extends Component {
       place10: 0,
       field: 0
     },
-    comePoint: 0,
-    dontComePoint: 0
+    comePoint: 0
   };
 
   rollDice = () => {
@@ -81,19 +79,19 @@ class Craps extends Component {
     const diceSum = this.state.die1 + this.state.die2;
     switch (this.state.point) {
       case 0:
+        //if the point is not set
         switch (diceSum) {
           case 2:
           case 3:
           case 12:
             //pass loses, dont pass wins
-            newState.playerCash =
-              this.state.playerCash + this.state.bets.dontPass;
+            newState.playerCash += newState.bets.dontPass;
             newState.bets.pass = 0;
             break;
           case 7:
           case 11:
             //pass wins, dont pass loses
-            newState.playerCash = this.state.playerCash + this.state.bets.pass;
+            newState.playerCash += newState.bets.pass;
             newState.bets.dontPass = 0;
             break;
           case 4:
@@ -107,9 +105,50 @@ class Craps extends Component {
             break;
         }
       default:
+        //if the point is set
         switch (diceSum) {
+          case this.state.point:
+            //pass wins
+            newState.playerCash += newState.bets.pass;
+          case 2:
+            //come bet loses
+            newState.bets.come = 0;
+            //field wins 2:1
+            newState.playerCash += newState.bets.field * 2;
+            break;
+          case 3:
+            //come bet loses
+            newState.bets.come = 0;
+            //field wins 1:1
+            newState.playerCash += newState.bets.field;
+            break;
+          case 4:
+            //if theres a come bet, set the comePoint
+            if (newState.bets.come != 0) {
+              newState.comePoint = diceSum;
+            }
+            //field wins 1:1
+            newState.playerCash += newState.bets.field;
+            //place wins 9:5
+            newState.playerCash += newState.bets.place4 * 1.8;
+            break;
+          case 5:
+            //if theres a come bet, set the comePoint
+            if (newState.bets.come != 0) {
+              newState.comePoint = diceSum;
+            }
+            //place wins 7:5
+            newState.playerCash += newState.bets.place5 * 1.4;
+            break;
+          case 6:
+            //if theres a come bet, set the comePoint
+            if (newState.bets.come != 0) {
+              newState.comePoint = diceSum;
+            }
+            break;
           case 7:
-            //dont come wins, clear bets and reset point
+            //come wins, clear bets and reset point
+            newState.playerCash += newState.bets.come * 2;
             newState.bets = {
               pass: 0,
               dontPass: 0,
@@ -125,12 +164,38 @@ class Craps extends Component {
             };
             newState.point = 0;
             break;
-          case this.state.point:
-            //pass wins
-            newState.playerCash = this.state.playerCash + this.state.bets.pass;
+          case 8:
+            //if theres a come bet, set the comePoint
+            if (newState.bets.come != 0) {
+              newState.comePoint = diceSum;
+            }
             break;
-          default:
-          //keep rolling
+          case 9:
+            //if theres a come bet, set the comePoint
+            if (newState.bets.come != 0) {
+              newState.comePoint = diceSum;
+            }
+            break;
+          case 10:
+            //if theres a come bet, set the comePoint
+            if (newState.bets.come != 0) {
+              newState.comePoint = diceSum;
+            }
+            //field wins 1:1
+            newState.playerCash += newState.bets.field;
+            break;
+          case 11:
+            //come wins
+            newState.playerCash += newState.bets.come * 2;
+            //field wins 1:1
+            newState.playerCash += newState.bets.field;
+            break;
+          case 12:
+            //come bet loses
+            newState.bets.come = 0;
+            //field wins 2:1
+            newState.playerCash += newState.bets.field * 2;
+            break;
         }
     }
     this.setState(newState);
