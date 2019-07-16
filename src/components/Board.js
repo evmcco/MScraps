@@ -13,12 +13,20 @@ class Board extends Component {
   handleChange = e => {
     let newBets = { ...this.state.bets };
     const target = e.target;
-    const value = parseInt(target.value);
+    const value = target.value;
     const name = target.name;
     newBets[name] = value;
     this.setState({
       bets: newBets
     });
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.bets.pass !== this.props.bets.pass) {
+      this.setState({
+        bets: this.props.bets
+      });
+    }
   };
 
   render() {
@@ -31,15 +39,11 @@ class Board extends Component {
             name="pass"
             onChange={this.handleChange}
             value={this.state.bets.pass}
-          />
-        </label>
-        <label>
-          Don't Pass
-          <input
-            type="text"
-            name="dontPass"
-            onChange={this.handleChange}
-            value={this.state.bets.dontPass}
+            readOnly={
+              this.props.point === 0 && this.props.bets.pass === 0
+                ? false
+                : true
+            }
           />
         </label>
         <label>
@@ -49,6 +53,11 @@ class Board extends Component {
             name="come"
             onChange={this.handleChange}
             value={this.state.bets.come}
+            readOnly={
+              this.props.point !== 0 && this.props.bets.come === 0
+                ? false
+                : true
+            }
           />
         </label>
         <label>
@@ -58,6 +67,7 @@ class Board extends Component {
             name="field"
             onChange={this.handleChange}
             value={this.state.bets.field}
+            readOnly={this.props.point !== 0 ? false : true}
           />
         </label>
         <label>
@@ -67,6 +77,7 @@ class Board extends Component {
             name="place4"
             onChange={this.handleChange}
             value={this.state.bets.place4}
+            readOnly={this.props.point !== 0 ? false : true}
           />
         </label>
         <label>
@@ -76,6 +87,7 @@ class Board extends Component {
             name="place5"
             onChange={this.handleChange}
             value={this.state.bets.place5}
+            readOnly={this.props.point !== 0 ? false : true}
           />
         </label>
         <label>
@@ -85,6 +97,7 @@ class Board extends Component {
             name="place6"
             onChange={this.handleChange}
             value={this.state.bets.place6}
+            readOnly={this.props.point !== 0 ? false : true}
           />
         </label>
         <label>
@@ -94,6 +107,7 @@ class Board extends Component {
             name="place8"
             onChange={this.handleChange}
             value={this.state.bets.place8}
+            readOnly={this.props.point !== 0 ? false : true}
           />
         </label>
         <label>
@@ -103,6 +117,7 @@ class Board extends Component {
             name="place9"
             onChange={this.handleChange}
             value={this.state.bets.place9}
+            readOnly={this.props.point !== 0 ? false : true}
           />
         </label>
         <label>
@@ -112,6 +127,7 @@ class Board extends Component {
             name="place10"
             onChange={this.handleChange}
             value={this.state.bets.place10}
+            readOnly={this.props.point !== 0 ? false : true}
           />
         </label>
         <button onClick={() => this.props.acceptBets(this.state.bets)}>
