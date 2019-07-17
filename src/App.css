@@ -1,9 +1,12 @@
 .App {
+  margin: 0 5px;
   text-align: center;
 }
 
 html,
 body {
+  background-color: green;
+  font-family: "Libre Baskerville", serif;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -15,16 +18,15 @@ ul {
   padding: 0;
 }
 
+input {
+  background-color: green;
+  cursor: default;
+}
+
 .activity {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-input {
-  background-color: white;
-  border: none;
-  width: 0.4rem;
 }
 
 .main {
@@ -47,25 +49,34 @@ input {
 
 .board-window {
   display: grid;
-  /* grid-gap: 5px; */
+  grid-gap: 5px;
   grid-row: 2/6;
   grid-template-rows: repeat(4, 1fr);
 }
 
 .place-bets-window {
   display: grid;
+  grid-gap: 2px;
   grid-row: 1;
   grid-template-columns: repeat(6, 1fr);
 }
 
 .place-button {
-  align-items: center;
+  align-items: start;
   display: flex;
   flex-direction: column;
+  font-family: "Libre Baskerville", serif;
+  height: 100%;
   justify-content: space-around;
-  height: 90%;
+  padding: 0;
   text-align: center;
-  width: 10%;
+  width: 100%;
+}
+
+.place-input {
+  background-color: white;
+  border: none;
+  width: 1rem;
 }
 
 .come-bet-window {
@@ -81,12 +92,21 @@ input {
 }
 
 .bet-button {
-  height: 90%;
+  font-family: "Libre Baskerville", serif;
+  height: 100%;
   width: 90%;
+}
+
+.bet-input {
+  background-color: white;
+  border: none;
+  font-family: "Libre Baskerville", serif;
+  width: 20px;
 }
 
 .accept-bets-window {
   grid-row: 6;
+  margin-top: 5px;
 }
 
 .player-funds-window {
@@ -121,16 +141,23 @@ input {
   overflow: auto;
 }
 
+.dice-list {
+  color: red;
+  font-size: 1.5rem;
+}
+
 .dice-results-window {
+  color: red;
   grid-row: 3;
 }
 
 .die-roll-window {
   grid-row: 4;
+  margin: 5px;
 }
 
 .roll-button {
-  border: none;
+  color: red;
   cursor: pointer;
   height: 100%;
   width: 100%;

@@ -28,7 +28,7 @@ class RollHistory extends Component {
     const prevRolls = this.props.prevRolls;
     return !!prevRolls ? (
       <>
-        <ul className="overflow-list">
+        <ul className="overflow-list dice-list">
           {prevRolls.map((roll, index) => {
             return (
               <li key={`${roll}, ${index}`}>

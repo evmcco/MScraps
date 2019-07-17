@@ -132,9 +132,7 @@ class Craps extends Component {
           case 12:
             //pass loses
             newState.activityLog.unshift(
-              `${diceSum}: Craps! Your pass bet of $${
-                newState.bets.pass
-              } loses.`
+              `${diceSum}: Pass bet of $${newState.bets.pass} loses`
             );
             newState.bets.pass = 0;
             break;
@@ -142,7 +140,7 @@ class Craps extends Component {
           case 11:
             //pass wins
             newState.activityLog.unshift(
-              `${diceSum}: Winner! You pass bet of $${newState.bets.pass} wins.`
+              `${diceSum}: Pass bet of $${newState.bets.pass} wins`
             );
             newState.playerCash += newState.bets.pass;
             break;
@@ -153,9 +151,7 @@ class Craps extends Component {
           case 9:
           case 10:
             //set the point
-            newState.activityLog.unshift(
-              `${diceSum}: The point is set at ${diceSum}.`
-            );
+            newState.activityLog.unshift(`${diceSum}: Point set at ${diceSum}`);
             newState.point = diceSum;
             break;
         }
@@ -172,34 +168,28 @@ class Craps extends Component {
             //pass wins
             newState.playerCash += newState.bets.pass;
             newState.activityLog.unshift(
-              `${diceSum}: The point hits! Your pass bet of $${
-                newState.bets.pass
-              } wins.`
+              `${diceSum}: Pass bet of $${newState.bets.pass} wins`
             );
             break;
           case this.state.comePoint:
             //come wins
             newState.playerCash += newState.bets.come;
             newState.activityLog.unshift(
-              `${diceSum}: The come hits! Your come bet of $${
-                newState.bets.come
-              } wins.`
+              `${diceSum}: Come bet of $${newState.bets.come} wins`
             );
             break;
           case 2:
             //come bet loses if come point is not set
             if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come bet of $${newState.bets.come} loses.`
+                `${diceSum}: Come bet of $${newState.bets.come} loses`
               );
               newState.bets.come = 0;
             }
             //field wins 2:1
             if (newState.bets.field > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your field bet of $${
-                  newState.bets.field
-                } wins double!`
+                `${diceSum}: Field bet of $${newState.bets.field} wins 2:1`
               );
               newState.playerCash += newState.bets.field * 2;
             }
@@ -208,14 +198,14 @@ class Craps extends Component {
             //come bet loses if come point is not set
             if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come bet of $${newState.bets.come} loses.`
+                `${diceSum}: Come bet of $${newState.bets.come} loses`
               );
               newState.bets.come = 0;
             }
             //field wins 1:1
             if (newState.bets.field > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your field bet of $${newState.bets.field} wins!`
+                `${diceSum}: Field bet of $${newState.bets.field} wins`
               );
               newState.playerCash += newState.bets.field;
             }
@@ -224,23 +214,21 @@ class Craps extends Component {
             //if theres a come bet, and a comePoint isn't set, set the comePoint
             if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come point is set at ${diceSum}.`
+                `${diceSum}: Come point set at ${diceSum}`
               );
               newState.comePoint = diceSum;
             }
             //field wins 1:1
             if (newState.bets.field > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your field bet of $${newState.bets.field} wins!`
+                `${diceSum}: Field bet of $${newState.bets.field} wins`
               );
               newState.playerCash += newState.bets.field;
             }
             //place wins 9:5
             if (newState.bets.place4 > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your place 4 bet of $${
-                  newState.bets.place4
-                } wins 9:5!`
+                `${diceSum}: Place 4 bet of $${newState.bets.place4} wins 9:5.`
               );
               newState.playerCash += newState.bets.place4 * 1.8;
             }
@@ -249,16 +237,14 @@ class Craps extends Component {
             //if theres a come bet, and a comePoint isn't set, set the comePoint
             if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come point is set at ${diceSum}.`
+                `${diceSum}: Come point set at ${diceSum}`
               );
               newState.comePoint = diceSum;
             }
             //place wins 7:5
             if (newState.bets.place5 > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your place 5 bet of $${
-                  newState.bets.place5
-                } wins 7:5!`
+                `${diceSum}: Place 5 bet of $${newState.bets.place5} wins 7:5`
               );
               newState.playerCash += newState.bets.place5 * 1.4;
             }
@@ -267,16 +253,14 @@ class Craps extends Component {
             //if theres a come bet, and a comePoint isn't set, set the comePoint
             if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come point is set at ${diceSum}.`
+                `${diceSum}: Come point set at ${diceSum}`
               );
               newState.comePoint = diceSum;
             }
             //place wins 7:6
             if (newState.bets.place6 > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your place 6 bet of $${
-                  newState.bets.place6
-                } wins 7:6!`
+                `${diceSum}: Place 6 bet of $${newState.bets.place6} wins 7:6`
               );
               newState.playerCash += newState.bets.place6 * (7 / 6);
             }
@@ -285,11 +269,11 @@ class Craps extends Component {
             //come wins if no come point is set, clear bets and reset points
             if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come bet of $${newState.bets.come} wins.`
+                `${diceSum}: Come bet of $${newState.bets.come} wins`
               );
               newState.playerCash += newState.bets.come * 2;
             }
-            newState.activityLog.unshift(`${diceSum}! Board is cleared.`);
+            newState.activityLog.unshift(`${diceSum}: Board is cleared.`);
             newState.bets = {
               pass: 0,
               come: 0,
@@ -308,16 +292,14 @@ class Craps extends Component {
             //if theres a come bet, and a comePoint isn't set, set the comePoint
             if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come point is set at ${diceSum}.`
+                `${diceSum}: Come point set at ${diceSum}`
               );
               newState.comePoint = diceSum;
             }
             //place wins 7:6
             if (newState.bets.place8 > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your place 8 bet of $${
-                  newState.bets.place8
-                } wins 7:6!`
+                `${diceSum}: Place 8 bet of $${newState.bets.place8} wins 7:6`
               );
               newState.playerCash += newState.bets.place8 * (7 / 6);
             }
@@ -326,16 +308,14 @@ class Craps extends Component {
             //if theres a come bet, and a comePoint isn't set, set the comePoint
             if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come point is set at ${diceSum}.`
+                `${diceSum}: Come point set at ${diceSum}`
               );
               newState.comePoint = diceSum;
             }
             //place wins 7:5
             if (newState.bets.place9 > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your place 9 bet of $${
-                  newState.bets.place9
-                } wins 7:5!`
+                `${diceSum}: Place 9 bet of $${newState.bets.place9} wins 7:5`
               );
               newState.playerCash += newState.bets.place9 * 1.4;
             }
@@ -344,23 +324,21 @@ class Craps extends Component {
             //if theres a come bet, and a comePoint isn't set, set the comePoint
             if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come point is set at ${diceSum}.`
+                `${diceSum}: Come point set at ${diceSum}`
               );
               newState.comePoint = diceSum;
             }
             //field wins 1:1
             if (newState.bets.field > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your field bet of $${newState.bets.field} wins!`
+                `${diceSum}: Field bet of $${newState.bets.field} wins`
               );
               newState.playerCash += newState.bets.field;
             }
             //place wins 9:5
             if (newState.bets.place10 > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your place 10 bet of $${
-                  newState.bets.place10
-                } wins 9:5!`
+                `${diceSum}: Place 10 bet of $${newState.bets.place10} wins 9:5`
               );
               newState.playerCash += newState.bets.place10 * 1.8;
             }
@@ -369,14 +347,14 @@ class Craps extends Component {
             //come wins
             if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come bet of $${newState.bets.come} wins.`
+                `${diceSum}: Come bet of $${newState.bets.come} wins`
               );
               newState.playerCash += newState.bets.come;
             }
             //field wins 1:1
             if (newState.bets.field > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your field bet of $${newState.bets.field} wins!`
+                `${diceSum}: Field bet of $${newState.bets.field} wins`
               );
               newState.playerCash += newState.bets.field;
             }
@@ -385,16 +363,14 @@ class Craps extends Component {
             //come bet loses if come point is not set
             if (newState.bets.come > 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your come bet of $${newState.bets.come} loses.`
+                `${diceSum}: Come bet of $${newState.bets.come} loses`
               );
               newState.bets.come = 0;
             }
             //field wins 2:1
             if (newState.bets.field > 0) {
               newState.activityLog.unshift(
-                `${diceSum}: Your field bet of $${
-                  newState.bets.field
-                } wins double!`
+                `${diceSum}: Field bet of $${newState.bets.field} wins 2:1`
               );
               newState.playerCash += newState.bets.field * 2;
             }
@@ -440,7 +416,7 @@ class Craps extends Component {
             comePoint={this.state.comePoint}
           />
           <div className="player-funds-window">
-            <h3>Player Funds: {this.state.playerCash}</h3>
+            <h3>Player Funds: ${this.state.playerCash}</h3>
           </div>
         </div>
         <div className="right-panel">
