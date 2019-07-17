@@ -416,7 +416,7 @@ class Craps extends Component {
             comePoint={this.state.comePoint}
           />
           <div className="player-funds-window">
-            <h3>Player Funds: ${this.state.playerCash}</h3>
+            <h3>Cash: ${this.state.playerCash}</h3>
           </div>
         </div>
         <div className="right-panel">

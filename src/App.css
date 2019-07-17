@@ -1,5 +1,6 @@
 .App {
-  margin: 0 5px;
+  margin: auto;
+  max-width: 50%;
   text-align: center;
 }
 
@@ -126,7 +127,7 @@ input {
 }
 
 .activity-item {
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .previous-rolls-window {
