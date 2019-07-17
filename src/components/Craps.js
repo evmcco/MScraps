@@ -66,7 +66,7 @@ class Craps extends Component {
     let newActivityLog = this.state.activityLog;
     let oldBets = { ...this.state.bets };
     for (let el in bets) {
-      if (bets[el] != oldBets[el]) {
+      if (bets[el] !== oldBets[el]) {
         console.log(`old bet: ${bets[el]} new bet: ${oldBets[el]}`);
         let betName = this.cleanBetName(el);
         newActivityLog.unshift(`${betName} bet placed for $${bets[el]}`);
@@ -222,7 +222,7 @@ class Craps extends Component {
             break;
           case 4:
             //if theres a come bet, and a comePoint isn't set, set the comePoint
-            if (newState.bets.come != 0 && newState.comePoint === 0) {
+            if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -247,7 +247,7 @@ class Craps extends Component {
             break;
           case 5:
             //if theres a come bet, and a comePoint isn't set, set the comePoint
-            if (newState.bets.come != 0 && newState.comePoint === 0) {
+            if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -265,7 +265,7 @@ class Craps extends Component {
             break;
           case 6:
             //if theres a come bet, and a comePoint isn't set, set the comePoint
-            if (newState.bets.come != 0 && newState.comePoint === 0) {
+            if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -306,7 +306,7 @@ class Craps extends Component {
             break;
           case 8:
             //if theres a come bet, and a comePoint isn't set, set the comePoint
-            if (newState.bets.come != 0 && newState.comePoint === 0) {
+            if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -324,7 +324,7 @@ class Craps extends Component {
             break;
           case 9:
             //if theres a come bet, and a comePoint isn't set, set the comePoint
-            if (newState.bets.come != 0 && newState.comePoint === 0) {
+            if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -342,7 +342,7 @@ class Craps extends Component {
             break;
           case 10:
             //if theres a come bet, and a comePoint isn't set, set the comePoint
-            if (newState.bets.come != 0 && newState.comePoint === 0) {
+            if (newState.bets.come !== 0 && newState.comePoint === 0) {
               newState.activityLog.unshift(
                 `${diceSum}: Your come point is set at ${diceSum}.`
               );
@@ -415,44 +415,46 @@ class Craps extends Component {
   render() {
     // console.log(this.state);
     return (
-      <>
-        <button
-          type="button"
-          disabled={this.state.bets.pass !== 0 ? false : true}
-          onClick={() => this.rollDice()}
-        >
-          Roll
-        </button>
-        <h1>
-          {!!this.state.die1 ? (
-            <span>{this.dieNumberToIcon(this.state.die1)} </span>
+      <div className="main">
+        <div className="left-panel">
+          {!!this.state.point ? <p>Point: {this.state.point}</p> : null}
+          {!!this.state.comePoint ? (
+            <p>Come Point: {this.state.comePoint}</p>
           ) : null}
-          {!!this.state.die2 ? (
-            <span>{this.dieNumberToIcon(this.state.die2)}</span>
-          ) : null}
-        </h1>
-        {!!this.state.point ? <p>Point: {this.state.point}</p> : null}
-        {!!this.state.comePoint ? (
-          <p>Come Point: {this.state.comePoint}</p>
-        ) : null}
-        <Board
-          acceptBets={bets => this.acceptBets(bets)}
-          bets={this.state.bets}
-          point={this.state.point}
-          comePoint={this.state.comePoint}
-        />
-        <h3>Player Funds: {this.state.playerCash}</h3>
-        <div className="activity">
-          <div>
-            <h3>Previous Rolls</h3>
-            <RollHistory prevRolls={this.state.allRolls} />
-          </div>
+          <Board
+            acceptBets={bets => this.acceptBets(bets)}
+            bets={this.state.bets}
+            point={this.state.point}
+            comePoint={this.state.comePoint}
+          />
+          <h3>Player Funds: {this.state.playerCash}</h3>
+        </div>
+        <div className="right-panel">
           <div>
             <h3>Results</h3>
             <ActivityLog activityLog={this.state.activityLog} />
           </div>
+          <div>
+            <h3>Previous Rolls</h3>
+            <RollHistory prevRolls={this.state.allRolls} />
+          </div>
+          <h1>
+            {!!this.state.die1 ? (
+              <span>{this.dieNumberToIcon(this.state.die1)} </span>
+            ) : null}
+            {!!this.state.die2 ? (
+              <span>{this.dieNumberToIcon(this.state.die2)}</span>
+            ) : null}
+          </h1>
+          <button
+            type="button"
+            disabled={this.state.bets.pass !== 0 ? false : true}
+            onClick={() => this.rollDice()}
+          >
+            Roll
+          </button>
         </div>
-      </>
+      </div>
     );
   }
 }
