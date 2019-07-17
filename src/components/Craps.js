@@ -197,7 +197,7 @@ class Craps extends Component {
             //field wins 2:1
             if (newState.bets.field > 0) {
               newState.activityLog.unshift(
-                `${diceSum}:(2) Your field bet of $${
+                `${diceSum}: Your field bet of $${
                   newState.bets.field
                 } wins double!`
               );
@@ -417,42 +417,70 @@ class Craps extends Component {
     return (
       <div className="main">
         <div className="left-panel">
-          {!!this.state.point ? <p>Point: {this.state.point}</p> : null}
-          {!!this.state.comePoint ? (
-            <p>Come Point: {this.state.comePoint}</p>
-          ) : null}
+          <div className="points-window">
+            <span>
+              {!!this.state.point ? (
+                <p>Point: {this.state.point}</p>
+              ) : (
+                <p>Point: Off</p>
+              )}
+            </span>
+            <span>
+              {!!this.state.comePoint ? (
+                <p>Come Point: {this.state.comePoint}</p>
+              ) : (
+                <p>Come Point: Off</p>
+              )}
+            </span>
+          </div>
           <Board
             acceptBets={bets => this.acceptBets(bets)}
             bets={this.state.bets}
             point={this.state.point}
             comePoint={this.state.comePoint}
           />
-          <h3>Player Funds: {this.state.playerCash}</h3>
+          <div className="player-funds-window">
+            <h3>Player Funds: {this.state.playerCash}</h3>
+          </div>
         </div>
         <div className="right-panel">
-          <div>
+          <div className="results-window">
             <h3>Results</h3>
             <ActivityLog activityLog={this.state.activityLog} />
           </div>
-          <div>
+          <div className="previous-rolls-window">
             <h3>Previous Rolls</h3>
             <RollHistory prevRolls={this.state.allRolls} />
           </div>
-          <h1>
-            {!!this.state.die1 ? (
-              <span>{this.dieNumberToIcon(this.state.die1)} </span>
-            ) : null}
-            {!!this.state.die2 ? (
-              <span>{this.dieNumberToIcon(this.state.die2)}</span>
-            ) : null}
-          </h1>
-          <button
-            type="button"
-            disabled={this.state.bets.pass !== 0 ? false : true}
-            onClick={() => this.rollDice()}
-          >
-            Roll
-          </button>
+          <div className="dice-results-window">
+            <h1>
+              {!!this.state.die1 ? (
+                <span>{this.dieNumberToIcon(this.state.die1)} </span>
+              ) : (
+                <span>
+                  <i class="fas fa-square" />
+                  &nbsp;
+                </span>
+              )}
+              {!!this.state.die2 ? (
+                <span>{this.dieNumberToIcon(this.state.die2)}</span>
+              ) : (
+                <span>
+                  <i class="fas fa-square" />
+                </span>
+              )}
+            </h1>
+          </div>
+          <div className="die-roll-window">
+            <button
+              className="roll-button"
+              type="button"
+              disabled={this.state.bets.pass !== 0 ? false : true}
+              onClick={() => this.rollDice()}
+            >
+              <i class="fas fa-dice" />
+            </button>
+          </div>
         </div>
       </div>
     );

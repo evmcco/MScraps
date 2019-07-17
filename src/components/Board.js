@@ -40,112 +40,121 @@ class Board extends Component {
   render() {
     return (
       <>
-        <div className="bets">
-          <div>
-            <label>
-              <button
-                disabled={this.props.point !== 0 ? false : true}
-                onClick={() => this.updateBet("place4", 5)}
-              >
-                Place 4
-              </button>
-              <input
-                type="text"
-                name="place4"
-                onChange={this.handleChange}
-                value={this.state.bets.place4}
-                readOnly="true:"
-              />
-            </label>
+        <div className="board-window">
+          <div className="place-bets-window">
+            <div>
+              <label>
+                <button
+                  className="place-button"
+                  disabled={this.props.point !== 0 ? false : true}
+                  onClick={() => this.updateBet("place4", 5)}
+                >
+                  4
+                  <input
+                    type="text"
+                    name="place4"
+                    onChange={this.handleChange}
+                    value={this.state.bets.place4}
+                    readOnly="true:"
+                  />
+                </button>
+              </label>
+            </div>
+            <div>
+              <label>
+                <button
+                  className="place-button"
+                  disabled={this.props.point !== 0 ? false : true}
+                  onClick={() => this.updateBet("place5", 5)}
+                >
+                  5
+                  <input
+                    type="text"
+                    name="place5"
+                    onChange={this.handleChange}
+                    value={this.state.bets.place5}
+                    readOnly="true"
+                  />
+                </button>
+              </label>
+            </div>
+            <div>
+              <label>
+                <button
+                  className="place-button"
+                  disabled={this.props.point !== 0 ? false : true}
+                  onClick={() => this.updateBet("place6", 6)}
+                >
+                  6
+                  <input
+                    type="text"
+                    name="place6"
+                    onChange={this.handleChange}
+                    value={this.state.bets.place6}
+                    readOnly="true:"
+                  />
+                </button>
+              </label>
+            </div>
+            <div>
+              <label>
+                <button
+                  className="place-button"
+                  disabled={this.props.point !== 0 ? false : true}
+                  onClick={() => this.updateBet("place8", 6)}
+                >
+                  8
+                  <input
+                    type="text"
+                    name="place8"
+                    onChange={this.handleChange}
+                    value={this.state.bets.place8}
+                    readOnly="true"
+                  />
+                </button>
+              </label>
+            </div>
+            <div>
+              <label>
+                <button
+                  className="place-button"
+                  disabled={this.props.point !== 0 ? false : true}
+                  onClick={() => this.updateBet("place9", 5)}
+                >
+                  9
+                  <input
+                    type="text"
+                    name="place9"
+                    onChange={this.handleChange}
+                    value={this.state.bets.place9}
+                    readOnly="true"
+                  />
+                </button>
+              </label>
+            </div>
+            <div>
+              <label>
+                <button
+                  className="place-button"
+                  disabled={this.props.point !== 0 ? false : true}
+                  onClick={() => this.updateBet("place10", 5)}
+                >
+                  10
+                  <input
+                    type="text"
+                    name="place10"
+                    onChange={this.handleChange}
+                    value={this.state.bets.place10}
+                    readOnly="true"
+                  />
+                </button>
+              </label>
+            </div>
           </div>
-          <div>
+          <div className="come-bet-window">
             <label>
               <button
-                disabled={this.props.point !== 0 ? false : true}
-                onClick={() => this.updateBet("place5", 5)}
-              >
-                Place 5
-              </button>
-              <input
-                type="text"
-                name="place5"
-                onChange={this.handleChange}
-                value={this.state.bets.place5}
-                readOnly="true"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              <button
-                disabled={this.props.point !== 0 ? false : true}
-                onClick={() => this.updateBet("place6", 6)}
-              >
-                Place 6
-              </button>
-              <input
-                type="text"
-                name="place6"
-                onChange={this.handleChange}
-                value={this.state.bets.place6}
-                readOnly="true:"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              <button
-                disabled={this.props.point !== 0 ? false : true}
-                onClick={() => this.updateBet("place8", 6)}
-              >
-                Place 8
-              </button>
-              <input
-                type="text"
-                name="place8"
-                onChange={this.handleChange}
-                value={this.state.bets.place8}
-                readOnly="true"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              <button
-                disabled={this.props.point !== 0 ? false : true}
-                onClick={() => this.updateBet("place9", 5)}
-              >
-                Place 9
-              </button>
-              <input
-                type="text"
-                name="place9"
-                onChange={this.handleChange}
-                value={this.state.bets.place9}
-                readOnly="true"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              <button
-                disabled={this.props.point !== 0 ? false : true}
-                onClick={() => this.updateBet("place10", 5)}
-              >
-                Place 10
-              </button>
-              <input
-                type="text"
-                name="place10"
-                onChange={this.handleChange}
-                value={this.state.bets.place10}
-                readOnly="true"
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              <button
+                className="bet-button"
                 disabled={
                   this.props.point !== 0 &&
                   this.props.bets.come === 0 &&
@@ -155,37 +164,39 @@ class Board extends Component {
                 }
                 onClick={() => this.updateBet("come", 5)}
               >
-                Come
+                Come:
+                <input
+                  type="text"
+                  name="come"
+                  onChange={this.handleChange}
+                  value={this.state.bets.come}
+                  readOnly="true"
+                />
               </button>
-              <input
-                type="text"
-                name="come"
-                onChange={this.handleChange}
-                value={this.state.bets.come}
-                readOnly="true"
-              />
             </label>
           </div>
-          <div>
+          <div className="field-bet-window">
             <label>
               <button
+                className="bet-button"
                 disabled={this.props.point !== 0 ? false : true}
                 onClick={() => this.updateBet("field", 2)}
               >
-                Field
+                Field:
+                <input
+                  type="text"
+                  name="field"
+                  onChange={this.handleChange}
+                  value={this.state.bets.field}
+                  readOnly="true"
+                />
               </button>
-              <input
-                type="text"
-                name="field"
-                onChange={this.handleChange}
-                value={this.state.bets.field}
-                readOnly="true"
-              />
             </label>
           </div>
-          <div>
+          <div className="pass-bet-window">
             <label>
               <button
+                className="bet-button"
                 disabled={
                   this.props.point === 0 && this.props.bets.pass === 0
                     ? false
@@ -193,21 +204,23 @@ class Board extends Component {
                 }
                 onClick={() => this.updateBet("pass", 5)}
               >
-                Pass
+                Pass:
+                <input
+                  type="text"
+                  name="pass"
+                  onChange={this.handleChange}
+                  value={this.state.bets.pass}
+                  readOnly="true"
+                />
               </button>
-              <input
-                type="text"
-                name="pass"
-                onChange={this.handleChange}
-                value={this.state.bets.pass}
-                readOnly="true"
-              />
             </label>
           </div>
         </div>
-        <button onClick={() => this.props.acceptBets(this.state.bets)}>
-          Place Bets
-        </button>
+        <div className="accept-bets-window">
+          <button onClick={() => this.props.acceptBets(this.state.bets)}>
+            Accept Bets
+          </button>
+        </div>
       </>
     );
   }

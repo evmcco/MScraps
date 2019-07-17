@@ -3,9 +3,13 @@ import React from "react";
 const ActivityLog = props => {
   return !!props.activityLog ? (
     <>
-      <ul>
+      <ul className="overflow-list">
         {props.activityLog.map((activity, index) => {
-          return <li key={`${activity},${index}`}>{activity}</li>;
+          return (
+            <li className="activity-item" key={`${activity},${index}`}>
+              {activity}
+            </li>
+          );
         })}
       </ul>
     </>
