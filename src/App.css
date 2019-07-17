@@ -44,8 +44,9 @@ ul {
   justify-content: space-around;
 }
 
-input[readonly] {
-  background-color: rgb(240, 240, 240);
+input {
+  background-color: white;
+  width: 1rem;
 }
 
 .main {
