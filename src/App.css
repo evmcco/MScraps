@@ -143,12 +143,12 @@ input {
 }
 
 .dice-list {
-  color: red;
+  color: darkred;
   font-size: 1.5rem;
 }
 
 .dice-results-window {
-  color: red;
+  color: darkred;
   grid-row: 3;
 }
 
@@ -158,7 +158,7 @@ input {
 }
 
 .roll-button {
-  color: red;
+  color: darkred;
   cursor: pointer;
   height: 100%;
   width: 100%;
