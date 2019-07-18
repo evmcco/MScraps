@@ -1,6 +1,6 @@
 .App {
-  margin: auto;
-  max-width: 50%;
+  margin: 0 auto;
+  max-width: 800px;
   text-align: center;
 }
 
@@ -19,8 +19,8 @@ ul {
   padding: 0;
 }
 
-input {
-  background-color: green;
+input[type="text"] {
+  background-color: rgba(0, 0, 0, 0);
   cursor: default;
 }
 
@@ -117,7 +117,6 @@ input {
 .right-panel {
   display: grid;
   grid-column: 2;
-  /* grid-gap: 5px; */
   grid-template-rows: 3fr 3fr 1fr 1fr;
 }
 
@@ -126,8 +125,14 @@ input {
   height: 100%;
 }
 
+.activity-list {
+  list-style: circle;
+  text-align: left;
+}
+
 .activity-item {
   font-size: 10px;
+  margin-bottom: 5px;
 }
 
 .previous-rolls-window {
