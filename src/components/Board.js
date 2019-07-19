@@ -157,7 +157,7 @@ class Board extends Component {
               }
               onClick={() => this.updateBet("come", 5)}
             >
-              Come:
+              Come-
               <input
                 className="bet-input"
                 type="text"
@@ -174,15 +174,20 @@ class Board extends Component {
               disabled={this.props.point !== 0 ? false : true}
               onClick={() => this.updateBet("field", 2)}
             >
-              Field:
-              <input
-                className="bet-input"
-                type="text"
-                name="field"
-                onChange={this.handleChange}
-                value={this.state.bets.field}
-                readOnly="true"
-              />
+              <p>
+                Field-
+                <input
+                  className="bet-input"
+                  type="text"
+                  name="field"
+                  onChange={this.handleChange}
+                  value={this.state.bets.field}
+                  readOnly="true"
+                />
+              </p>
+              <p>
+                <strong> 2 </strong> 3 4 9 10 11 <strong> 12 </strong>
+              </p>
             </button>
           </div>
           <div className="pass-bet-window">
@@ -195,7 +200,7 @@ class Board extends Component {
               }
               onClick={() => this.updateBet("pass", 5)}
             >
-              Pass:
+              Pass-
               <input
                 className="bet-input"
                 type="text"
