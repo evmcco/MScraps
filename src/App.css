@@ -24,6 +24,12 @@ input[type="text"] {
   cursor: default;
 }
 
+input,
+textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
 .activity {
   display: flex;
   flex-direction: row;
