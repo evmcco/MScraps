@@ -30,6 +30,10 @@ textarea {
   -webkit-border-radius: 0;
 }
 
+button:disabled {
+  color: black;
+}
+
 .activity {
   display: flex;
   flex-direction: row;
@@ -69,7 +73,7 @@ textarea {
 }
 
 .place-button {
-  align-items: start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   font-family: "Libre Baskerville", serif;
@@ -83,6 +87,7 @@ textarea {
 .place-input {
   background-color: white;
   border: none;
+  text-align: center;
   width: 1rem;
 }
 
