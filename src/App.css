@@ -24,6 +24,10 @@ input[type="text"] {
   cursor: default;
 }
 
+button:disabled {
+  color: black;
+}
+
 .activity {
   display: flex;
   flex-direction: row;
@@ -63,7 +67,7 @@ input[type="text"] {
 }
 
 .place-button {
-  align-items: start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   font-family: "Libre Baskerville", serif;
@@ -77,6 +81,7 @@ input[type="text"] {
 .place-input {
   background-color: white;
   border: none;
+  text-align: center;
   width: 1rem;
 }
 

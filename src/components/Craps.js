@@ -389,7 +389,9 @@ class Craps extends Component {
   };
 
   render() {
-    // console.log(this.state);
+    const diceButtonStyle = {
+      color: "darkred"
+    };
     return (
       <div className="main">
         <div className="left-panel">
@@ -453,6 +455,7 @@ class Craps extends Component {
               type="button"
               disabled={this.state.bets.pass !== 0 ? false : true}
               onClick={() => this.rollDice()}
+              style={diceButtonStyle}
             >
               <i class="fas fa-dice" />
             </button>
