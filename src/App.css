@@ -25,7 +25,8 @@ input[type="text"] {
 }
 
 input,
-textarea {
+textarea,
+button {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 }
