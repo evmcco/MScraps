@@ -186,7 +186,7 @@ class Board extends Component {
                 />
               </p>
               <p>
-                <strong> 2 </strong> 3 4 9 10 11 <strong> 12 </strong>
+                <strong> 2 </strong> 3 4 10 11 <strong> 12 </strong>
               </p>
             </button>
           </div>
